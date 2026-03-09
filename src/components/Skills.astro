@@ -2,15 +2,15 @@
 import Badge from "./Badge.astro";
 import FlutterIcon from "../icons/skills/FlutterIcon.astro";
 import TypeScriptIcon from "../icons/skills/TypeScriptIcon.astro";
-import NextjsIcon from "../icons/skills/NextjsIcon.astro";
 import SupabaseIcon from "../icons/skills/SupabaseIcon.astro";
 import AstroIcon from "../icons/skills/AstroIcon.astro";
-import AngularIcon from "../icons/skills/AngularIcon.astro";
 import WordpressIcon from "../icons/skills/WordpressIcon.astro";
 import HtmlIcon from "../icons/skills/HtmlIcon.astro";
 import TailwindIcon from "../icons/skills/TailwindIcon.astro";
 import GitIcon from "../icons/skills/GitIcon.astro";
 import SkillIcon from "../icons/SkillIcon.astro";
+import JavaIcon from "../icons/skills/JavaIcon.astro";
+import SQLIcon from "../icons/skills/SQLIcon.astro";
 
 const skills = [
   {
@@ -45,17 +45,25 @@ const skills = [
 
 const skillsLearning = [
   {
-    text: "Angular",
-    icon: AngularIcon,
+    text: "Java",
+    icon: JavaIcon,
   },
   {
-    text: "TypeScript",
-    icon: TypeScriptIcon,
+    text: "SQL",
+    icon: SQLIcon,
   },
 ];
 ---
 
 <div>
+   <div class="flex items-center justify-center mb-5 mt-15">
+    <Badge text="Skills" icon={SkillIcon}/>
+    <Badge
+      text="Skills"
+      className="absolute blur-xs -z-1 animate-pulse"
+      icon={SkillIcon}
+    />
+  </div>
   <div class="flex flex-wrap gap-7 justify-center">
     {
       skills.map(({ icon: SkillIcon, text }) => (
@@ -69,7 +77,7 @@ const skillsLearning = [
       ))
     }
   </div>
-  <div class="flex items-center justify-center my-5">
+  <div class="flex items-center justify-center mb-5 mt-15">
     <Badge text="Learning" icon={SkillIcon}/>
     <Badge
       text="Learning"
