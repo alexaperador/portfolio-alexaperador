@@ -4,64 +4,63 @@ import SunIcon from "../icons/SunIcon.astro";
 ---
 
 <button
-	id="toggle-theme"
-	class="flex items-center text-[#252525] rounded-full p-2 text-sm font-medium cursor-pointer dark:bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400
+  id="toggle-theme"
+  class="flex items-center text-[#252525] rounded-full p-2 text-sm font-medium cursor-pointer dark:bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400
     bg-linear-to-tl from-neutral-700 via-neutral-350 to-neutral-900"
+  aria-label="Cambiar tema claro/oscuro"
 >
-	<span
-		id="moon-icon"
-		class="rounded-full text-sm text-[#141414] flex items-center justify-center hover:text-[#387cb4] hover:scale-105 duration-300"
-	>
-		<MoonIcon class="w-6 h-6" />
-		<MoonIcon
-			class="absolute w-7 h-7 z-10 scale-105 blur-xs animate-pulse"
-		/>
-	</span>
-	<span
-		id="sun-icon"
-		class="rounded-full text-sm dark:hidden text-white flex items-center justify-center hover:text-yellow-300 hover:scale-105 duration-300"
-	>
-		<SunIcon class="w-6 h-6" />
-		<SunIcon
-			class="absolute w-7 h-7 z-10 scale-105 blur-xs animate-pulse"
-		/>
-	</span>
+  <span
+    id="moon-icon"
+    class="rounded-full text-sm text-[#141414] flex items-center justify-center hover:text-[#387cb4] hover:scale-105 duration-300"
+	aria-label="Cambiar a tema oscuro"
+  >
+    <MoonIcon class="w-6 h-6" />
+    <MoonIcon class="absolute w-7 h-7 z-10 scale-105 blur-xs animate-pulse" />
+  </span>
+  <span
+    id="sun-icon"
+    class="rounded-full text-sm dark:hidden text-white flex items-center justify-center hover:text-yellow-300 hover:scale-105 duration-300"
+    aria-label="Cambiar a tema claro"
+  >
+    <SunIcon class="w-6 h-6" />
+    <SunIcon class="absolute w-7 h-7 z-10 scale-105 blur-xs animate-pulse" />
+  </span>
 </button>
 
 <script>
-	const themeToggle = document.getElementById("toggle-theme");
-	const htmlElement = document.documentElement;
-	const moonIcon = document.getElementById("moon-icon");
-	const sunIcon = document.getElementById("sun-icon");
+  const themeToggle = document.getElementById("toggle-theme");
+  const htmlElement = document.documentElement;
+  const moonIcon = document.getElementById("moon-icon");
+  const sunIcon = document.getElementById("sun-icon");
 
-	if (localStorage.getItem("theme") === "dark") {
-		htmlElement.classList.add("dark");
-	}
+  if (localStorage.getItem("theme") === "dark") {
+    htmlElement.classList.add("dark");
+  }
 
-	function updateButton() {
-		if (!themeToggle || !moonIcon || !sunIcon) return;
+  function updateButton() {
+    if (!themeToggle || !moonIcon || !sunIcon) return;
 
-		const isDark = htmlElement.classList.contains("dark");
+    const isDark = htmlElement.classList.contains("dark");
 
-		if (isDark) {
-			moonIcon.classList.remove("hidden");
-			sunIcon.classList.add("hidden");
-		} else {
-			moonIcon.classList.add("hidden");
-			sunIcon.classList.remove("hidden");
-		}
-	}
+    if (isDark) {
+      moonIcon.classList.remove("hidden");
+      sunIcon.classList.add("hidden");
+    } else {
+      moonIcon.classList.add("hidden");
+      sunIcon.classList.remove("hidden");
+    }
+  }
 
-	updateButton();
+  updateButton();
 
-	if (themeToggle) {
-		themeToggle.addEventListener("click", () => {
-			htmlElement.classList.toggle("dark");
-			const newTheme = htmlElement.classList.contains("dark")
-				? "dark"
-				: "light";
-			localStorage.setItem("theme", newTheme);
-			updateButton();
-		});
-	}
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      htmlElement.classList.toggle("dark");
+      const newTheme = htmlElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+      localStorage.setItem("theme", newTheme);
+      updateButton();
+    });
+  }
 </script>
