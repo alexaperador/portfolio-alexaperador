@@ -21,46 +21,109 @@ const socialLinks = [
 ];
 ---
 
-<div class="flex items-center flex-col mt-30 gap-4" id="home">
-    <div class="gradient-text flex items-center flex-col">
-        <p class="font-medium lg:text-lg text-md">Alex Aperador Salcedo</p>
-        <h1 class="lg:text-9xl text-6xl font-bold text-center">
-            FRONTEND
-            <br />
-            DEVELOPER
-        </h1>
-    </div>
+<section class="relative flex items-center justify-center overflow-hidden min-h-screen w-full">
+    <!-- Grid de fondo con difuminado radial -->
     <div
-        class="bg-[#174b24] px-5 py-2 rounded-full text-md flex items-center gap-3 mt-5 drop-shadow-md dark:shadow-[0_0_20px_rgba(47,147,47,0.30)]"
+        class="absolute inset-0 z-0 pointer-events-none"
+        style={`
+            background-image:
+                linear-gradient(to right, #80808020 1px, transparent 1px),
+                linear-gradient(to bottom, #80808020 1px, transparent 1px);
+            background-size: 24px 24px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
+        `}
     >
-        <div class="bg-[#2F932F] animate-pulse w-4 h-4 rounded-full"></div>
-        <p class="text-md text-gray-200">Available to work</p>
     </div>
 
-    <div class="flex gap-5 mt-10 items-center mb-20">
-        {
-            socialLinks.map(({ icon: Icon, url, ariaLabel }) => (
-                <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={ariaLabel}
-                    class="inline-flex w-fit items-center justify-center text-sm hover:text-[#3b3b3b] text-[#141414] dark:text-gray-200 dark:hover:text-white font-medium h-fit relative transition-transform duration-500 hover:scale-105"
-                >
-                    <Icon class={IconStyle} />
-                    <Icon class="absolute w-10 h-10 z-10 scale-105 blur-xs animate-pulse" />
-                </a>
-            ))
-        }
-        <div class="flex">
-            <a
-                href="mailto:alexapsa2007@gmail.com"
-                class="dark:bg-gray-200 bg-[#141414] duration-500 hover:scale-105 dark:text-[#141414] text-gray-200 py-2 px-4
-                rounded-full font-medium flex items-center gap-2 hover:dark:bg-white hover:bg-[#3b3b3b] cursor-pointer"
-                ><SendIcon />
-                <SendIcon class="absolute z-1 scale-105 blur-xs" />Contact me</a
-            >
+    <div
+        class="relative z-10 flex items-center flex-col mt-30 gap-4"
+        id="home"
+    >
+        <div
+            class="gradient-text flex items-center flex-col hero-fade-in"
+            style="animation-delay: 0.1s"
+        >
+            <p class="font-medium lg:text-lg text-md">
+                Alex Aperador Salcedo
+            </p>
+            <h1 class="lg:text-9xl text-6xl font-bold text-center">
+                FRONTEND
+                <br />
+                DEVELOPER
+            </h1>
         </div>
+
+        <div
+            class="bg-[#174b24] px-5 py-2 rounded-full text-md flex items-center gap-3 mt-5 drop-shadow-md dark:shadow-[0_0_20px_rgba(47,147,47,0.30)] hero-fade-in"
+            style="animation-delay: 0.3s"
+        >
+            <div class="bg-[#2F932F] animate-pulse w-4 h-4 rounded-full"></div>
+            <p class="text-md text-gray-200">Available to work</p>
+        </div>
+
+        <div
+            class="flex gap-5 mt-10 items-center mb-20 hero-fade-in"
+            style="animation-delay: 0.5s"
+        >
+            {
+                socialLinks.map(({ icon: Icon, url, ariaLabel }) => (
+                    <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={ariaLabel}
+                        class="inline-flex w-fit items-center justify-center text-sm hover:text-[#3b3b3b] text-[#141414] dark:text-gray-200 dark:hover:text-white font-medium h-fit relative transition-transform duration-500 hover:scale-105"
+                    >
+                        <Icon class={IconStyle} />
+                        <Icon class="absolute w-10 h-10 z-10 scale-105 blur-xs animate-pulse" />
+                    </a>
+                ))
+            }
+            <div class="flex">
+                <a
+                    href="mailto:alexapsa2007@gmail.com"
+                    class="dark:bg-gray-200 bg-[#141414] duration-500 hover:scale-105 dark:text-[#141414] text-gray-200 py-2 px-4
+                    rounded-full font-medium flex items-center gap-2 hover:dark:bg-white hover:bg-[#3b3b3b] cursor-pointer"
+                    ><SendIcon />
+                    <SendIcon class="absolute z-1 scale-105 blur-xs" />Contact me</a
+                >
+            </div>
+        </div>
+        <Skills />
     </div>
-    <Skills />
-</div>
+</section>
+
+<style>
+    @keyframes hero-fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes hero-bounce-y {
+        0%,
+        100% {
+            transform: translate(-50%, 0);
+        }
+        50% {
+            transform: translate(-50%, 10px);
+        }
+    }
+
+    .hero-fade-in {
+        opacity: 0;
+        animation: hero-fade-in-up 0.6s ease-out forwards;
+    }
+
+    .hero-bounce {
+        animation:
+            hero-fade-in-up 0.6s ease-out forwards,
+            hero-bounce-y 1.5s ease-in-out 1.5s infinite;
+    }
+</style>
