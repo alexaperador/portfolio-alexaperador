@@ -135,7 +135,7 @@ const languages = [
   languageButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const language = button.dataset.language;
-
+      localStorage.setItem("portfolio-language", language ?? "es");
       if (language === "es" || language === "en") {
         setLanguage(language);
       }
