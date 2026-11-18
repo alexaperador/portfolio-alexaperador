@@ -1,0 +1,150 @@
+---
+const currentLocale = Astro.currentLocale ?? "es";
+
+const languages = [
+  {
+    code: "es",
+    label: "ES",
+  },
+  {
+    code: "en",
+    label: "EN",
+  },
+];
+---
+
+<nav
+  class="flex rounded-full border border-black/10 bg-black/5 p-1 text-xs font-semibold dark:border-white/10 dark:bg-white/10"
+  aria-label="Language selection"
+>
+  {
+    languages.map((language) => (
+      <button
+        type="button"
+        data-language={language.code}
+        class:list={[
+          "rounded-full px-4 py-1.5 transition-all duration-200",
+          currentLocale === language.code
+            ? "bg-[#141414] text-white dark:bg-gray-200 dark:text-[#141414]"
+            : "text-black/55 hover:text-[#ff5d01] dark:text-white/65",
+        ]}
+        aria-current={currentLocale === language.code ? "page" : undefined}
+      >
+        {language.label}
+      </button>
+    ))
+  }
+</nav>
+
+<style is:global>
+  [data-i18n] {
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  [data-i18n].language-changing {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+</style>
+
+<script>
+  import en from "../i18n/en.json";
+  import es from "../i18n/es.json";
+
+  const translations = { es, en } as const;
+
+  type Language = keyof typeof translations;
+  type TranslationKey = keyof typeof es;
+
+  const languageButtons =
+    document.querySelectorAll<HTMLButtonElement>("[data-language]");
+
+  const setLanguage = (language: Language, animate = true) => {
+    document.documentElement.lang = language;
+    localStorage.setItem("portfolio-language", language);
+
+    document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n as TranslationKey | undefined;
+      if (!key) return;
+
+      const text = translations[language][key];
+      if (!text) return;
+
+      if (!animate) {
+        element.textContent = text;
+        return;
+      }
+
+      element.classList.add("language-changing");
+
+      window.setTimeout(() => {
+        element.textContent = text;
+
+        window.requestAnimationFrame(() => {
+          element.classList.remove("language-changing");
+        });
+      }, 180);
+    });
+
+    document
+      .querySelectorAll<HTMLElement>("[data-period-start]")
+      .forEach((element) => {
+        const value = element.dataset.periodStart;
+        if (!value) return;
+
+        const [year, month] = value.split("-").map(Number);
+        const formattedDate = new Intl.DateTimeFormat(language, {
+          month: "short",
+          year: "numeric",
+        }).format(new Date(year, month - 1, 1));
+        const text =
+          language === "es"
+            ? formattedDate.replace(/^./, (letter) => letter.toUpperCase())
+            : formattedDate;
+
+        if (!animate) {
+          element.textContent = text;
+          return;
+        }
+
+        element.classList.add("language-changing");
+        window.setTimeout(() => {
+          element.textContent = text;
+          window.requestAnimationFrame(() => {
+            element.classList.remove("language-changing");
+          });
+        }, 180);
+      });
+
+    languageButtons.forEach((button) => {
+      const isActive = button.dataset.language === language;
+
+      button.setAttribute("aria-current", isActive ? "page" : "false");
+      button.classList.toggle("bg-[#141414]", isActive);
+      button.classList.toggle("text-white", isActive);
+      button.classList.toggle("dark:bg-gray-200", isActive);
+      button.classList.toggle("dark:text-[#141414]", isActive);
+      button.classList.toggle("text-black/55", !isActive);
+      button.classList.toggle("dark:text-white/65", !isActive);
+      button.classList.toggle("scale-105", isActive);
+    });
+  };
+
+  languageButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const language = button.dataset.language;
+
+      if (language === "es" || language === "en") {
+        setLanguage(language);
+      }
+    });
+  });
+
+  const savedLanguage = localStorage.getItem("portfolio-language");
+
+  if (savedLanguage === "es" || savedLanguage === "en") {
+    setLanguage(savedLanguage, false);
+  }
+</script>

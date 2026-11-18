@@ -1,35 +1,92 @@
 ---
+import { useTranslations } from "../i18n/utils";
 import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 
+const t = useTranslations(Astro.currentLocale);
+
 const socialMedia = [
-    {
-        icon: GitHubIcon,
-        url: "https://github.com/alexaperador",
-        ariaLabel: "Link to GitHub profile"
-    },
-    {
-        icon: LinkedInIcon,
-        url: "https://www.linkedin.com/in/alex-aperador/",
-        ariaLabel: "Link to LinkedIn profile"
-    }
-]
+  {
+    icon: GitHubIcon,
+    url: "https://github.com/alexaperador/",
+    ariaLabel: "Link to GitHub profile",
+  },
+  {
+    icon: LinkedInIcon,
+    url: "https://www.linkedin.com/in/alex-aperador/",
+    ariaLabel: "Link to LinkedIn profile",
+  },
+];
 ---
 
 <footer
-    class="bg-black/20 dark:bg-black/10 border-t border-black/10 dark:border-white/10 py-7 flex items-center justify-center text-[#141414] dark:text-gray-200 gap-4"
+  class="border-t border-black/10 bg-black/5 dark:border-white/10 dark:bg-black/10"
 >
-{
-    socialMedia.map(({ icon: Icon, url, ariaLabel }) => (
+  <div
+    class="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8"
+  >
+    <div
+      class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+    >
+      <div>
         <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={ariaLabel}
-            class="dark:text-gray-200 text-gray-800 hover:scale-110 duration-300"
+          href="/#home"
+          class="text-xl font-semibold text-[#141414] dark:text-gray-100"
         >
-            <Icon class="w-6 h-6" />
+          Alex Aperador<span class="text-[#ff5d01]">.</span>
         </a>
-    ))
-}
+        <p
+          class="mt-2 max-w-xs text-sm leading-6 text-black/55 dark:text-white/55"
+        >
+          <span data-i18n="footer.description">{t("footer.description")}</span>
+        </p>
+      </div>
+      <nav
+        class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-black/60 dark:text-white/60"
+        aria-label="Footer navigation"
+      >
+        <a
+          class="transition hover:text-[#ff5d01]"
+          href="/#experience"
+          data-i18n="footer.experience">Experience</a
+        >
+        <a
+          class="transition hover:text-[#ff5d01]"
+          href="/#studies"
+          data-i18n="footer.studies">Studies</a
+        >
+        <a
+          class="transition hover:text-[#ff5d01]"
+          href="/#projects"
+          data-i18n="footer.projects">Projects</a
+        >
+        <a
+          class="transition hover:text-[#ff5d01]"
+          href="mailto:alexapsa2007@gmail.com"
+          data-i18n="footer.contact">Contact</a
+        >
+      </nav>
+    </div>
+    <div
+      class="flex flex-col gap-4 border-t border-black/10 pt-5 text-xs text-black/45 dark:border-white/10 dark:text-white/45 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <span>© {new Date().getFullYear()} Alex Aperador Salcedo</span>
+      <div class="flex items-center gap-3">
+        <span data-i18n="footer.findMe">Find me online</span>
+        {
+          socialMedia.map(({ icon: Icon, url, ariaLabel }) => (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={ariaLabel}
+              class="text-[#141414] transition hover:-translate-y-0.5 hover:text-[#ff5d01] dark:text-gray-200"
+            >
+              <Icon class="size-5" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </footer>

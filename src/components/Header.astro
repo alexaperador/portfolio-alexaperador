@@ -3,138 +3,258 @@ import ThemeToggle from "./ThemeToggle.astro";
 import HomeIcon from "../icons/HomeIcon.astro";
 import SkillsIcon from "../icons/SkillsIcon.astro";
 import StudiesIcon from "../icons/StudiesIcon.astro";
+import WorkIcon from "../icons/WorkIcon.astro";
 import ProjectsIcon from "../icons/ProjectsIcon.astro";
 import ContactIcon from "../icons/ContactIcon.astro";
 import MenuIcon from "../icons/MenuIcon.astro";
 import XIcon from "../icons/XIcon.astro";
+import LanguagePicker from "./LanguagePicker.astro";
 
 const navItems = [
-    {
-        title: "Home",
-        url: "/#home",
-        icon: HomeIcon,
-    },
-    {
-        title: "Studies",
-        url: "/#studies",
-        icon: StudiesIcon,
-    },
-    {
-        title: "Projects",
-        url: "/#projects",
-        icon: ProjectsIcon,
-    },
-    {
-        title: "Contact",
-        url: "mailto:alexapsa2007@gmail.com",
-        icon: ContactIcon,
-    },
+  {
+    title: "Skills",
+    url: "/#skills",
+    icon: SkillsIcon,
+  },
+  {
+    title: "Experience",
+    url: "/#experience",
+    icon: WorkIcon,
+  },
+  {
+    title: "Studies",
+    url: "/#studies",
+    icon: StudiesIcon,
+  },
+  {
+    title: "Projects",
+    url: "/#projects",
+    icon: ProjectsIcon,
+  },
+  {
+    title: "Contact",
+    url: "mailto:alexapsa2007@gmail.com",
+    icon: ContactIcon,
+  },
 ];
 ---
 
-<header
-    class="fixed top-0 z-11 flex items-center justify-between gap-5 md:justify-center px-5 w-full mx-auto mt-4"
->
-    <div class="flex gap-5 justify-center">
-        <nav
-            class="hidden md:flex px-3 text-sm font-medium rounded-full bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400 from-neutral-700 to-neutral-900 dark:text-[#141414] text-gray-200 justify-center items-center"
+<header class="fixed inset-x-0 top-0 z-11 px-4 pt-4 sm:px-6">
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full border border-black/10 bg-white/70 px-3 py-2 shadow-lg shadow-black/5 backdrop-blur-md dark:border-white/10 dark:bg-[#141414]/75"
+  >
+    <a
+      href="/#home"
+      class="group flex items-center gap-2 pl-2"
+      aria-label="Alex Aperador, home"
+    >
+      <span
+        class="flex size-8 items-center justify-center rounded-full bg-[#141414] text-sm font-bold text-white transition-all group-hover:bg-[#ff5d01] dark:bg-gray-200 dark:text-[#141414]"
+      >
+        A
+      </span>
+      <span
+        class="hidden text-sm font-semibold text-[#141414] sm:inline dark:text-gray-100"
+      >
+        Alex Aperador
+      </span>
+    </a>
+
+    <nav
+      class="hidden items-center gap-1 md:flex"
+      aria-label="Primary navigation"
+    >
+      {
+        navItems.map((link) => {
+          const Icon = link.icon;
+          const i18nKey = `sections.${link.title.toLowerCase()}`;
+          return (
+            <a
+              class="relative flex items-center gap-1.5 rounded-full px-3 py-2 text-sm text-black/65 transition duration-300 hover:bg-black/5 hover:text-[#ff5d01] dark:text-white/70 dark:hover:bg-white/10"
+              href={link.url}
+            >
+              <Icon class="size-4" />
+              <span data-i18n={i18nKey}>{link.title}</span>
+            </a>
+          );
+        })
+      }
+    </nav>
+    <LanguagePicker />
+
+    <div class="flex items-center gap-2">
+      <div class="md:hidden">
+        <button
+          id="menu-toggle"
+          class="flex size-10 items-center cursor-pointer justify-center rounded-full bg-[#141414] text-gray-200 transition-transform duration-300 active:scale-90 dark:bg-gray-200 dark:text-[#141414]"
+          aria-label="Toggle menu"
+          aria-expanded="false"
         >
-            {
-                navItems.map((link) => {
-                    const Icon = link.icon;
-                    return (
-                        <a
-                            class="relative flex gap-2 items-center text-sm px-2 py-2 transition hover:text-[#ff5d01] duration-300"
-                            href={link.url}
-                        >
-                            <Icon class="w-4 h-4 drop-shadow-sm dark:drop-shadow-black/90 drop-shadow-white/50" />
-                            {link.title}
-                        </a>
-                    );
-                })
-            }
+          <MenuIcon id="hamburger-icon" class="transition-all duration-200" />
+          <XIcon id="close-icon" class="hidden transition-all duration-200" />
+        </button>
+        <nav
+          id="mobile-menu"
+          class="absolute right-0 top-14 mt-3 hidden w-full origin-top-right flex-col gap-1 rounded-2xl border border-black/10 bg-white/95 p-2 text-sm font-medium text-[#141414] shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-[#141414]/95 dark:text-gray-200"
+        >
+          {
+            navItems.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  class="flex w-full items-center gap-2 rounded-xl px-4 py-3 transition duration-300 hover:bg-black/5 hover:text-[#ff5d01] dark:hover:bg-white/10"
+                  href={link.url}
+                >
+                  <Icon class="size-4" />
+                  <span
+                    data-i18n={
+                      link.title === "Experience"
+                        ? "sections.experience"
+                        : undefined
+                    }
+                  >
+                    {link.title}
+                  </span>
+                </a>
+              );
+            })
+          }
         </nav>
-
-        <!-- Menú hamburguesa móvil -->
-        <div class="md:hidden">
-            <button
-                id="menu-toggle"
-                class="flex items-center justify-center w-10 h-10 rounded-full bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400 from-neutral-700 to-neutral-900 dark:text-[#141414] text-gray-200"
-                aria-label="Toggle menu"
-            >
-                <MenuIcon id="hamburger-icon" />
-                <XIcon id="close-icon" class="hidden" />
-            </button>
-
-            <!-- Menú desplegable móvil -->
-            <nav
-                id="mobile-menu"
-                class="hidden absolute items-center top-14 right-0 z-20 w-full h-100 px-4 py-3 text-sm font-medium rounded-2xl bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400 from-neutral-700 to-neutral-900 dark:text-[#141414] text-gray-200 flex-col gap-1 min-w-[150px]"
-            >
-                {
-                    navItems.map((link) => {
-                        const Icon = link.icon;
-                        return (
-                            <a
-                                class="flex gap-2 w-full h-full items-center justify-center text-center px-5 py-2 rounded-lg transition hover:text-[#ff5d01] bg-black/30 dark:bg-white/40 duration-300"
-                                href={link.url}
-                            >
-                                <Icon class="w-4 h-4 drop-shadow-sm dark:drop-shadow-black/90 drop-shadow-white/50" />
-                                {link.title}
-                            </a>
-                        );
-                    })
-                }
-            </nav>
-        </div>
+      </div>
+      <ThemeToggle />
     </div>
-    <ThemeToggle />
+  </div>
 </header>
 
 <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const hamburgerIcon = document.getElementById("hamburger-icon");
-    const closeIcon = document.getElementById("close-icon");
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIcon = document.getElementById("close-icon");
+  let isClosing = false;
 
-    menuToggle?.addEventListener("click", () => {
-        const isHidden = mobileMenu?.classList.contains("hidden");
+  const animateIcon = (icon: HTMLElement | null, opening: boolean) => {
+    icon?.animate(
+      opening
+        ? [
+            { opacity: 0, transform: "rotate(-90deg) scale(.7)" },
+            { opacity: 1, transform: "rotate(0deg) scale(1)" },
+          ]
+        : [
+            { opacity: 1, transform: "rotate(0deg) scale(1)" },
+            { opacity: 0, transform: "rotate(90deg) scale(.7)" },
+          ],
+      { duration: 180, easing: "ease-out" },
+    );
+  };
 
-        if (isHidden) {
-            mobileMenu?.classList.remove("hidden");
-            mobileMenu?.classList.add("flex");
-            hamburgerIcon?.classList.add("hidden");
-            closeIcon?.classList.remove("hidden");
-        } else {
-            mobileMenu?.classList.add("hidden");
-            mobileMenu?.classList.remove("flex");
-            hamburgerIcon?.classList.remove("hidden");
-            closeIcon?.classList.add("hidden");
-        }
+  const openMenu = () => {
+    if (!mobileMenu || isClosing) return;
+
+    isClosing = false;
+    mobileMenu
+      .getAnimations({ subtree: true })
+      .forEach((animation) => animation.cancel());
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+    menuToggle?.setAttribute("aria-expanded", "true");
+
+    hamburgerIcon?.classList.add("hidden");
+    closeIcon?.classList.remove("hidden");
+    animateIcon(closeIcon, true);
+
+    mobileMenu.animate(
+      [
+        { opacity: 0, transform: "translateY(-10px) scale(.96)" },
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+      ],
+      { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)" },
+    );
+
+    mobileMenu.querySelectorAll("a").forEach((link, index) => {
+      link.animate(
+        [
+          { opacity: 0, transform: "translateX(8px)" },
+          { opacity: 1, transform: "translateX(0)" },
+        ],
+        {
+          duration: 240,
+          delay: 60 + index * 35,
+          easing: "ease-out",
+          fill: "both",
+        },
+      );
     });
+  };
 
-    // Cerrar menú al hacer click en un enlace
-    const mobileLinks = mobileMenu?.querySelectorAll("a");
-    mobileLinks?.forEach((link) => {
-        link.addEventListener("click", () => {
-            mobileMenu?.classList.add("hidden");
-            mobileMenu?.classList.remove("flex");
-            hamburgerIcon?.classList.remove("hidden");
-            closeIcon?.classList.add("hidden");
-        });
-    });
+  const closeMenu = () => {
+    if (!mobileMenu || isClosing || mobileMenu.classList.contains("hidden"))
+      return;
 
-    // Cerrar menú al hacer click fuera
-    document.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        if (
-            !target.closest("#menu-toggle") &&
-            !target.closest("#mobile-menu")
-        ) {
-            mobileMenu?.classList.add("hidden");
-            mobileMenu?.classList.remove("flex");
-            hamburgerIcon?.classList.remove("hidden");
-            closeIcon?.classList.add("hidden");
-        }
+    isClosing = true;
+    mobileMenu
+      .getAnimations({ subtree: true })
+      .forEach((animation) => animation.cancel());
+    menuToggle?.setAttribute("aria-expanded", "false");
+    closeIcon?.classList.add("hidden");
+    hamburgerIcon?.classList.remove("hidden");
+    animateIcon(hamburgerIcon, true);
+
+    const animation = mobileMenu.animate(
+      [
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+        { opacity: 0, transform: "translateY(-8px) scale(.97)" },
+      ],
+      { duration: 160, easing: "ease-in" },
+    );
+
+    animation.finished
+      .catch(() => undefined)
+      .finally(() => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+        isClosing = false;
+      });
+  };
+
+  const boundToggle = menuToggle as
+    | (HTMLElement & { menuClickBound?: boolean })
+    | null;
+
+  if (boundToggle && !boundToggle.menuClickBound) {
+    boundToggle.menuClickBound = true;
+    boundToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const isOpen = boundToggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        closeMenu();
+      } else if (!isClosing) {
+        openMenu();
+      }
     });
+  }
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.stopPropagation();
+      closeMenu();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+
+    if (
+      !target.closest("#menu-toggle") &&
+      !target.closest("#mobile-menu") &&
+      menuToggle?.getAttribute("aria-expanded") === "true"
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
 </script>

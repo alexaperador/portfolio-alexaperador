@@ -1,0 +1,131 @@
+---
+import WorkIcon from "../icons/WorkIcon.astro";
+import Badge from "./Badge.astro";
+
+const locale = Astro.currentLocale ?? "es";
+
+const experience = [
+  {
+    role: "Software Developer Intern (Dual, DAM)",
+    company: "Centro Tecnológico del Notariado - Sant Cugat del Vallès",
+    periodStart: "2026-04",
+    periodEnd: "Present",
+    details:
+      "Part of the migration team, working on a Java desktop tool that migrates legacy notarial databases and document repositories into PostgreSQL. I improve the tool, fix bugs and validate migrations for different source systems.",
+    highlights: [
+      "Redesigned the live migration report in Java Swing: grouped checks and percentages over totals",
+      "Built a comparison of migrated records against Oracle BI data by notary, document type and year, with filters and sorting",
+      "Fixed concurrency and stale-state bugs (duplicate refresh threads, parameters kept between runs)",
+      "Testing several versions against different source systems and fixing bugs",
+      "Code quality analysis with SonarQube",
+    ],
+    stack:
+      "Java 21, Spring, Swing, Hibernate/JPA, PostgreSQL, Oracle, SQLServer, Apache POI, SonarQube, Maven",
+  },
+];
+
+const formatPeriodStart = (value: string) => {
+  const [year, month] = value.split("-").map(Number);
+  const formattedDate = new Intl.DateTimeFormat(locale, {
+    month: "short",
+    year: "numeric",
+  }).format(new Date(year, month - 1, 1));
+
+  return locale === "es"
+    ? formattedDate.replace(/^./, (letter) => letter.toUpperCase())
+    : formattedDate;
+};
+---
+
+<section id="experience">
+  <div class="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+    <div
+      class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+    >
+      <div>
+        <div class="mb-4 flex items-center">
+          <Badge text="Experience" icon={WorkIcon} />
+          <Badge
+            text="Experience"
+            className="absolute -z-1 blur-xs animate-pulse"
+            icon={WorkIcon}
+          />
+        </div>
+        <h2
+          class="max-w-xl text-3xl font-semibold tracking-tight text-[#141414] dark:text-gray-100 sm:text-4xl"
+        >
+          <span data-i18n="work.title">Experience from real projects.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      {
+        experience.map((job) => (
+          <article class="overflow-hidden rounded-2xl border border-black/10 bg-black/10 shadow-xl dark:border-white/10 dark:bg-black/10">
+            <div class="border-b border-black/10 p-5 sm:p-7 dark:border-white/10">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                <div>
+                  <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff5d01]">
+                    <span data-i18n="work.currentRole">Current role</span>
+                  </p>
+                  <h2 class="text-2xl font-semibold text-[#141414] dark:text-gray-100">
+                    {job.role}
+                  </h2>
+                  <p class="mt-1 text-sm italic text-gray-600 dark:text-gray-300">
+                    {job.company}
+                    {", "}
+                    <span data-i18n="location">
+                      {locale === "es" ? "España" : "Spain"}
+                    </span>
+                  </p>
+                </div>
+                <span class="shrink-0 rounded-full border border-[#ff5d01]/40 px-3 py-1 text-sm text-[#ff5d01] sm:text-right">
+                  <span data-period-start={job.periodStart}>
+                    {formatPeriodStart(job.periodStart)}
+                  </span>{" "}
+                  -{" "}
+                  {job.periodEnd === "Present" ? (
+                    <span data-i18n="present">Present</span>
+                  ) : (
+                    job.periodEnd
+                  )}
+                </span>
+              </div>
+            </div>
+            <div class="grid gap-8 p-5 sm:p-7 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p class="text-sm leading-6 text-black/60 dark:text-white/60">
+                  <span data-i18n="work.0.details">{job.details}</span>
+                </p>
+                <p class="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff5d01]">
+                  <span data-i18n="work.stack">Stack</span>
+                </p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                  {job.stack.split(", ").map((technology) => (
+                    <li class="rounded-full border border-black/10 px-3 py-1 text-xs text-black/60 dark:border-white/15 dark:text-white/60">
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#ff5d01]">
+                  <span data-i18n="work.highlights">Highlights</span>
+                </p>
+                <ul class="mt-4 space-y-3 text-sm text-black/70 dark:text-white/70">
+                  {job.highlights.map((highlight) => (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-1.5 size-2 shrink-0 rounded-full bg-[#ff5d01]" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

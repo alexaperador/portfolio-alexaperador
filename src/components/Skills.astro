@@ -1,41 +1,40 @@
 ---
-import Badge from "./Badge.astro";
-import FlutterIcon from "../icons/skills/FlutterIcon.astro";
-import TypeScriptIcon from "../icons/skills/TypeScriptIcon.astro";
-import SupabaseIcon from "../icons/skills/SupabaseIcon.astro";
-import AstroIcon from "../icons/skills/AstroIcon.astro";
-import WordpressIcon from "../icons/skills/WordpressIcon.astro";
-import HtmlIcon from "../icons/skills/HtmlIcon.astro";
-import TailwindIcon from "../icons/skills/TailwindIcon.astro";
-import GitIcon from "../icons/skills/GitIcon.astro";
 import SkillIcon from "../icons/SkillIcon.astro";
+import AndroidIcon from "../icons/skills/AndroidIcon.astro";
+import AstroIcon from "../icons/skills/AstroIcon.astro";
+import ExpoIcon from "../icons/skills/ExpoIcon.astro";
+import GitIcon from "../icons/skills/GitIcon.astro";
 import JavaIcon from "../icons/skills/JavaIcon.astro";
 import SQLIcon from "../icons/skills/SQLIcon.astro";
+import SupabaseIcon from "../icons/skills/SupabaseIcon.astro";
+import TailwindIcon from "../icons/skills/TailwindIcon.astro";
+import TypeScriptIcon from "../icons/skills/TypeScriptIcon.astro";
+import Badge from "./Badge.astro";
 
 const skills = [
   {
-    text: "Flutter",
-    icon: FlutterIcon,
+    text: "Java",
+    icon: JavaIcon,
   },
   {
-    text: "Supabase",
-    icon: SupabaseIcon,
+    text: "TypeScript",
+    icon: TypeScriptIcon,
+  },
+  {
+    text: "SQL",
+    icon: SQLIcon,
   },
   {
     text: "Astro",
     icon: AstroIcon,
   },
   {
-    text: "WordPress",
-    icon: WordpressIcon,
-  },
-  {
-    text: "HTML",
-    icon: HtmlIcon,
-  },
-  {
     text: "Tailwind CSS",
     icon: TailwindIcon,
+  },
+  {
+    text: "Supabase",
+    icon: SupabaseIcon,
   },
   {
     text: "Git",
@@ -45,57 +44,119 @@ const skills = [
 
 const skillsLearning = [
   {
-    text: "Java",
-    icon: JavaIcon,
+    text: "Expo",
+    icon: ExpoIcon,
   },
   {
-    text: "SQL",
-    icon: SQLIcon,
+    text: "Android",
+    icon: AndroidIcon,
   },
 ];
 ---
 
 <div>
-   <div class="flex items-center justify-center mb-5 mt-15">
-    <Badge text="Skills" icon={SkillIcon}/>
-    <Badge
-      text="Skills"
-      className="absolute blur-xs -z-1 animate-pulse"
-      icon={SkillIcon}
-    />
-  </div>
-  <div class="flex flex-wrap gap-7 justify-center">
-    {
-      skills.map(({ icon: SkillIcon, text }) => (
-        <div class="flex flex-col items-center gap-2 font-medium bg-black/20  dark:bg-black/10 border border-black/10 dark:border-white/10 p-4 rounded-lg">
-          <span class="p-4 rounded-lg flex items-center justify-center">
-            <SkillIcon class="w-18 h-18 z-1 hover:scale-110 transition-transform duration-300" />
-            <SkillIcon class="absolute w-19 h-19 scale-105 blur-xs animate-pulse" />
-          </span>
-          <p class="gradient-text">{text}</p>
+  <section id="skills">
+    <div class="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+      <div
+        class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <div class="mb-4 flex items-center">
+            <Badge text="Skills" icon={SkillIcon} />
+            <Badge
+              text="Skills"
+              className="absolute -z-1 blur-xs animate-pulse"
+              icon={SkillIcon}
+            />
+          </div>
+          <h2
+            class="max-w-xl text-3xl font-semibold tracking-tight text-[#141414] dark:text-gray-100 sm:text-4xl"
+          >
+            <span data-i18n="skills.title">Tools I work with.</span>
+          </h2>
         </div>
-      ))
-    }
-  </div>
-  <div class="flex items-center justify-center mb-5 mt-15">
-    <Badge text="Learning" icon={SkillIcon}/>
-    <Badge
-      text="Learning"
-      className="absolute blur-xs -z-1 animate-pulse"
-      icon={SkillIcon}
-    />
-  </div>
-  <div class="flex flex-wrap justify-center gap-7">
-    {
-      skillsLearning.map(({ icon: SkillIcon, text }) => (
-        <div class="flex flex-col items-center gap-2 font-medium bg-black/20  dark:bg-black/10 border border-black/10 dark:border-white/10 p-4 rounded-lg">
-          <span class="p-4 rounded-lg flex items-center justify-center">
-            <SkillIcon class="w-18 h-18 z-1 hover:scale-110 transition-transform duration-300" />
-            <SkillIcon class="absolute w-19 h-19 scale-105 blur-xs animate-pulse" />
-          </span>
-          <p class="gradient-text">{text}</p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-[1fr_0.34fr] lg:items-start">
+        <div
+          class="rounded-2xl border border-black/10 bg-black/10 p-4 shadow-xl dark:border-white/10 dark:bg-black/10 sm:p-6"
+        >
+          <div
+            class="mb-5 flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10"
+          >
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.18em] text-[#ff5d01]"
+              >
+                <span data-i18n="skills.core">Core stack</span>
+              </p>
+              <p class="mt-1 text-sm text-black/60 dark:text-white/60">
+                <span data-i18n="skills.coreDescription"
+                  >Technologies I work with regularly</span
+                >
+              </p>
+            </div>
+          </div>
+          <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {
+              skills.map(({ icon: SkillIcon, text }) => (
+                <li>
+                  <div class="group flex min-h-32 flex-col justify-between rounded-xl border border-black/10 bg-white/25 p-4 transition duration-300 hover:-translate-y-1 hover:border-[#ff5d01]/50 hover:bg-white/45 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
+                    <span class="flex size-12 items-center justify-center rounded-lg bg-[#141414] p-2.5 shadow-lg shadow-black/10 transition-transform duration-300 group-hover:scale-105 dark:bg-black">
+                      <SkillIcon class="size-full" />
+                    </span>
+                    <span class="mt-5 text-sm font-semibold text-[#141414] dark:text-gray-100">
+                      {text}
+                    </span>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
         </div>
-      ))
-    }
-  </div>
+
+        <div
+          class="relative overflow-hidden rounded-2xl border border-[#ff5d01]/40 bg-[#141414] p-6 text-gray-100 shadow-xl shadow-[#ff5d01]/10"
+        >
+          <span
+            class="absolute -right-10 -top-10 size-32 rounded-full border border-[#ff5d01]/30"
+          ></span>
+          <span
+            class="absolute -right-4 -top-4 size-20 rounded-full border border-[#ff5d01]/20"
+          ></span>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-center justify-between">
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.18em] text-[#ff8c4a]"
+              >
+                <span data-i18n="skills.learning">Learning</span>
+              </p>
+              <span
+                class="rounded-full border border-white/20 px-2.5 py-1 text-xs text-white/60"
+              >
+                <span data-i18n="skills.next">Next up</span>
+              </span>
+            </div>
+            <p class="mt-5 max-w-xs text-sm leading-6 text-white/60">
+              <span data-i18n="skills.learningDescription"
+                >Expanding my toolkit for mobile experiences.</span
+              >
+            </p>
+            <ul class="space-y-3 pt-8">
+              {
+                skillsLearning.map(({ icon: SkillIcon, text }) => (
+                  <li class="flex items-center gap-4">
+                    <span class="flex size-16 items-center justify-center rounded-xl bg-white/10 p-3 shadow-lg shadow-black/20">
+                      <SkillIcon class="size-full" />
+                    </span>
+                    <span class="text-xl font-semibold">{text}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

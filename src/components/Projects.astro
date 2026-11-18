@@ -1,161 +1,188 @@
 ---
 import GitHubIcon from "../icons/GitHubIcon.astro";
-import LinkedInIcon from "../icons/LinkedInIcon.astro";
+import LinkIcon from "../icons/LinkIcon.astro";
 import ProjectsIcon from "../icons/ProjectsIcon.astro";
 import AstroIcon from "../icons/skills/AstroIcon.astro";
+import DecapIcon from "../icons/skills/DecapIcon.astro";
+import GodotIcon from "../icons/skills/GodotIcon.astro";
+import HtmlIcon from "../icons/skills/HtmlIcon.astro";
 import NextJsIcon from "../icons/skills/NextjsIcon.astro";
+import PythonIcon from "../icons/skills/PythonIcon.astro";
 import SupabaseIcon from "../icons/skills/SupabaseIcon.astro";
 import TailwindCSSIcon from "../icons/skills/TailwindIcon.astro";
-import Badge from "./Badge.astro";
-import LinkIcon from "../icons/LinkIcon.astro";
-import HtmlIcon from "../icons/skills/HtmlIcon.astro";
-import GodotIcon from "../icons/skills/GodotIcon.astro";
-import PythonIcon from "../icons/skills/PythonIcon.astro";
-import DecapIcon from "../icons/skills/DecapIcon.astro";
-import Card from "./Card.astro";
 import TypeScriptIcon from "../icons/skills/TypeScriptIcon.astro";
+import Badge from "./Badge.astro";
 
 const tags = {
-    Astro: {
-        name: "Astro",
-        class: "bg-[#3e257a] text-white inset-shadow-sm inset-shadow-purple-500/70",
-        icon: AstroIcon,
-    },
-    NextJs: {
-        name: "Next.js",
-        class: "bg-[#090909] text-white inset-shadow-sm inset-shadow-white/30",
-        icon: NextJsIcon,
-    },
-    Supabase: {
-        name: "Supabase",
-        class: "bg-[#248559] text-white inset-shadow-sm inset-shadow-green-500/70",
-        icon: SupabaseIcon,
-    },
-    TailwindCSS: {
-        name: "Tailwind CSS",
-        class: "bg-[#003159] text-white inset-shadow-sm inset-shadow-blue-500/70",
-        icon: TailwindCSSIcon,
-    },
-    HTML: {
-        name: "HTML",
-        class: "bg-[#7a3625] text-white inset-shadow-sm inset-shadow-orange-500/70",
-        icon: HtmlIcon,
-    },
-    Godot: {
-        name: "Godot",
-        class: "bg-[#355570] text-white inset-shadow-sm inset-shadow-blue-400/70",
-        icon: GodotIcon,
-    },
-    Python: {
-        name: "Python",
-        class: "bg-[#0b395e] text-white inset-shadow-sm inset-shadow-blue-400/50",
-        icon: PythonIcon,
-    },
-    Decap: {
-        name: "Decap CMS",
-        class: "bg-[#7a2572] text-white inset-shadow-sm inset-shadow-pink-500/70",
-        icon: DecapIcon,
-    },
-    TypeScript: {
-        name: "TypeScript",
-        class: "bg-[#08386e] text-white inset-shadow-sm inset-shadow-blue-500/70",
-        icon: TypeScriptIcon,
-    }
+  Astro: {
+    name: "Astro",
+    class: "bg-[#3e257a] text-white inset-shadow-sm inset-shadow-purple-500/70",
+    icon: AstroIcon,
+  },
+  NextJs: {
+    name: "Next.js",
+    class: "bg-[#090909] text-white inset-shadow-sm inset-shadow-white/30",
+    icon: NextJsIcon,
+  },
+  Supabase: {
+    name: "Supabase",
+    class: "bg-[#248559] text-white inset-shadow-sm inset-shadow-green-500/70",
+    icon: SupabaseIcon,
+  },
+  TailwindCSS: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white inset-shadow-sm inset-shadow-blue-500/70",
+    icon: TailwindCSSIcon,
+  },
+  HTML: {
+    name: "HTML",
+    class: "bg-[#7a3625] text-white inset-shadow-sm inset-shadow-orange-500/70",
+    icon: HtmlIcon,
+  },
+  Godot: {
+    name: "Godot",
+    class: "bg-[#355570] text-white inset-shadow-sm inset-shadow-blue-400/70",
+    icon: GodotIcon,
+  },
+  Python: {
+    name: "Python",
+    class: "bg-[#0b395e] text-white inset-shadow-sm inset-shadow-blue-400/50",
+    icon: PythonIcon,
+  },
+  Decap: {
+    name: "Decap CMS",
+    class: "bg-[#7a2572] text-white inset-shadow-sm inset-shadow-pink-500/70",
+    icon: DecapIcon,
+  },
+  TypeScript: {
+    name: "TypeScript",
+    class: "bg-[#08386e] text-white inset-shadow-sm inset-shadow-blue-500/70",
+    icon: TypeScriptIcon,
+  },
 };
 
 const projects = [
-    {
-        title: "Notly",
-        description:
-            "A note-taking web application that allows users to create, edit, and organize their notes efficiently.",
-        link: "https://notly.alexaperador.dev/",
-        github: "https://github.com/aaleex05/notly",
-        image: "/projects/notly.webp",
-        tags: [tags.NextJs, tags.Supabase, tags.TailwindCSS, tags.HTML, tags.TypeScript],
-    },
-    {
-        title: "Caedes:RE",
-        description:
-            "A 2D horror game developed using the Godot engine and scripted in Python, featuring atmospheric environments and engaging gameplay.",
-        link: "https://k1rb1-30.itch.io/caedesre",
-        github: "https://github.com/K1rb1-30/Caedes-Re",
-        image: "/projects/caedes-re.webp",
-        tags: [tags.Godot, tags.Python],
-    },
-    {
-        title: "La Barbería Imperial",
-        description:
-            "La Barbería Imperial is a modern and functional barbershop website where clients can book appointments and explore services. I implemented Decap CMS to allow the client to easily manage the image gallery.",
-        link: "https://labarberiaimperial.netlify.app/",
-        github: "https://github.com/aaleex05/barberiaimperial",
-        image: "/projects/labarberiaimperial.webp",
-        tags: [tags.Astro, tags.TailwindCSS, tags.Decap, tags.HTML],
-    },
+  {
+    title: "Notly",
+    description:
+      "A note-taking web application that allows users to create, edit, and organize their notes efficiently.",
+    link: "https://notly.alexaperador.dev/",
+    github: "https://github.com/alexaperador/notly",
+    image: "/projects/notly.webp",
+    tags: [
+      tags.NextJs,
+      tags.Supabase,
+      tags.TailwindCSS,
+      tags.HTML,
+      tags.TypeScript,
+    ],
+  },
+  {
+    title: "Caedes:RE",
+    description:
+      "A 2D horror game developed using the Godot engine and scripted in Python, featuring atmospheric environments and engaging gameplay.",
+    link: "https://k1rb1-30.itch.io/caedesre",
+    github: "https://github.com/K1rb1-30/Caedes-Re",
+    image: "/projects/caedes-re.webp",
+    tags: [tags.Godot, tags.Python],
+  },
+  {
+    title: "La Barbería Imperial",
+    description:
+      "La Barbería Imperial is a modern and functional barbershop website where clients can book appointments and explore services. I implemented Decap CMS to allow the client to easily manage the image gallery.",
+    link: "https://labarberiaimperial.netlify.app/",
+    github: "https://github.com/alexaperador/barberiaimperial",
+    image: "/projects/labarberiaimperial.webp",
+    tags: [tags.Astro, tags.TailwindCSS, tags.Decap, tags.HTML],
+  },
 ];
 ---
 
-<div
-    class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-8 flex flex-col"
-    id="projects"
->
-    <div class="flex items-center justify-center mb-5">
-        <Badge text="Projects" icon={ProjectsIcon} />
-        <Badge
+<section id="projects">
+  <div class="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+    <div
+      class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+    >
+      <div>
+        <div class="mb-4 flex items-center">
+          <Badge text="Projects" icon={ProjectsIcon} />
+          <Badge
             text="Projects"
-            className="absolute blur-xs -z-1 animate-pulse"
+            className="absolute -z-1 blur-xs animate-pulse"
             icon={ProjectsIcon}
-        />
+          />
+        </div>
+        <h2
+          class="max-w-xl text-3xl font-semibold tracking-tight text-[#141414] dark:text-gray-100 sm:text-4xl"
+        >
+          <span data-i18n="projects.title">Projects I have worked on.</span>
+        </h2>
+      </div>
     </div>
-    {
-        projects.map(({ title, description, tags, image, link, github }) => (
-            <Card>
-                <h3 class="lg:text-3xl text-2xl font-semibold gradient-text mb-2">
-                    {title}
-                </h3>
-                <p class="lg:text-lg gradient-text text-lm mb-4 text-pretty">
-                    {description}
-                </p>
-                <ul class="flex gap-x-2 flex-row flex-wrap gap-y-3 pb-4">
-                    {tags.map((tag) => (
-                        <li>
-                            <span
-                                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-4`}
-                            >
-                                <tag.icon class="size-4" />
-                                {tag.name}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        projects.map(
+          ({ title, description, tags, image, link, github }, index) => (
+            <article class="group overflow-hidden rounded-2xl border border-black/10 bg-black/10 shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#ff5d01]/50 dark:border-white/10 dark:bg-black/10">
+              <div class="relative aspect-video overflow-hidden bg-black/20">
                 <img
-                    class="rounded shadow-2xl shadow-white/10"
-                    src={image}
-                    alt={title}
+                  class="size-full object-cover transition duration-500 group-hover:scale-105"
+                  src={image}
+                  alt={`${title} project preview`}
+                  loading={index === 0 ? "eager" : "lazy"}
                 />
-                <div class="inline-flex gap-x-4 pt-4">
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="dark:bg-gray-200 bg-[#141414] duration-500 hover:scale-105 dark:text-[#141414] text-gray-200 py-2 px-4
-                    rounded-full font-medium flex items-center gap-2 hover:dark:bg-white hover:bg-[#3b3b3b] cursor-pointer"
-                    >
-                        <LinkIcon />
-                        Preview
-                    </a>
-                    <a
-                        href={github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Link to ${title} GitHub repository`}
-                        class="dark:bg-gray-200 bg-[#141414] duration-500 hover:scale-105 dark:text-[#141414] text-gray-200 py-2 px-4
-                    rounded-full font-medium flex items-center gap-2 hover:dark:bg-white hover:bg-[#3b3b3b] cursor-pointer"
-                    >
-                        <GitHubIcon />
-                        GitHub
-                    </a>
+                <span class="absolute left-4 top-4 rounded-full bg-[#141414]/85 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                  0{index + 1}
+                </span>
+              </div>
+              <div class="p-5 sm:p-6">
+                <h3 class="text-2xl font-semibold text-[#141414] dark:text-gray-100">
+                  {title}
+                </h3>
+                <p class="mt-3 text-sm leading-6 text-black/60 dark:text-white/60">
+                  <span data-i18n={`projects.${index}.description`}>
+                    {description}
+                  </span>
+                </p>
+                <ul class="mt-5 flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <li>
+                      <span
+                        class={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${tag.class}`}
+                      >
+                        <tag.icon class="size-3.5" />
+                        {tag.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-6 flex items-center gap-3 border-t border-black/10 pt-5 dark:border-white/10">
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-2 rounded-full bg-[#141414] px-4 py-2 text-sm font-medium text-gray-200 transition hover:bg-[#ff5d01] hover:text-white dark:bg-gray-200 dark:text-[#141414] dark:hover:bg-[#ff5d01] dark:hover:text-white"
+                  >
+                    <LinkIcon class="size-4" />
+                    <span data-i18n="projects.preview">Preview</span>
+                  </a>
+                  <a
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Link to ${title} GitHub repository`}
+                    class="flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-[#141414] transition hover:border-[#ff5d01] hover:text-[#ff5d01] dark:border-white/20 dark:text-gray-200"
+                  >
+                    <GitHubIcon class="size-4" />
+                    GitHub
+                  </a>
                 </div>
-            </Card>
-        ))
-    }
-</div>
+              </div>
+            </article>
+          ),
+        )
+      }
+    </div>
+  </div>
+</section>

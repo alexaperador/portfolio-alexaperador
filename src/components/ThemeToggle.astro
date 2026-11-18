@@ -12,7 +12,7 @@ import SunIcon from "../icons/SunIcon.astro";
   <span
     id="moon-icon"
     class="rounded-full text-sm text-[#141414] flex items-center justify-center hover:text-[#387cb4] hover:scale-105 duration-300"
-	aria-label="Cambiar a tema oscuro"
+    aria-label="Cambiar a tema oscuro"
   >
     <MoonIcon class="w-6 h-6" />
     <MoonIcon class="absolute w-7 h-7 z-10 scale-105 blur-xs animate-pulse" />
@@ -55,12 +55,28 @@ import SunIcon from "../icons/SunIcon.astro";
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-      htmlElement.classList.toggle("dark");
-      const newTheme = htmlElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-      localStorage.setItem("theme", newTheme);
-      updateButton();
+      const changeTheme = () => {
+        htmlElement.classList.toggle("dark");
+        const newTheme = htmlElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        localStorage.setItem("theme", newTheme);
+        updateButton();
+      };
+
+      const viewTransitionDocument = document as Document & {
+        startViewTransition?: (callback: () => void) => unknown;
+      };
+
+      if (viewTransitionDocument.startViewTransition) {
+        viewTransitionDocument.startViewTransition(changeTheme);
+      } else {
+        htmlElement.classList.add("theme-transition");
+        changeTheme();
+        window.setTimeout(() => {
+          htmlElement.classList.remove("theme-transition");
+        }, 350);
+      }
     });
   }
 </script>

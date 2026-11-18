@@ -5,11 +5,12 @@ const className: string = Astro.props.className || "";
 ---
 
 <span
-    class={`bg-linear-to-tl dark:from-slate-400 dark:via-gray-300 dark:to-gray-400
-     from-neutral-700 to-neutral-900 dark:text-[#141414] text-xl text-gray-200 px-9 py-1.5 rounded-full flex items-center font-medium ${className}`}
+  class={`inline-flex items-center gap-2 rounded-full border-r border-black/10 bg-white/70 pr-3 text-sm font-semibold text-[#141414] shadow-sm backdrop-blur-md transition-colors duration-300 dark:border-white/15 dark:bg-[#141414]/75 dark:text-gray-100 ${className}`}
 >
-    <Icon
-        class="w-6 h-5 inline-block mr-2 drop-shadow-sm dark:drop-shadow-black/90 drop-shadow-white/50"
-    />
-    {text}
+  <span
+    class="flex size-10 items-center justify-center rounded-l-full bg-[#141414] text-[#ff5d01] dark:bg-gray-200"
+  >
+    <Icon class="size-5" />
+  </span>
+  <span data-i18n={`sections.${text.toLowerCase()}`}>{text}</span>
 </span>

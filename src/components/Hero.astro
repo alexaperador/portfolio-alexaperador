@@ -2,30 +2,27 @@
 import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import SendIcon from "../icons/SendIcon.astro";
-import Skills from "./Skills.astro";
-
-const IconStyle =
-    "w-10 h-10 hover:text-[#3b3b3b] dark:text-gray-200 dark:hover:text-white cursor-pointer";
 
 const socialLinks = [
-    {
-        icon: GitHubIcon,
-        url: "https://github.com/aaleex05/",
-        ariaLabel: "Link to GitHub profile",
-    },
-    {
-        icon: LinkedInIcon,
-        url: "https://www.linkedin.com/in/alex-aperador/",
-        ariaLabel: "Link to LinkedIn profile",
-    },
+  {
+    icon: GitHubIcon,
+    url: "https://github.com/alexaperador/",
+    ariaLabel: "Link to GitHub profile",
+  },
+  {
+    icon: LinkedInIcon,
+    url: "https://www.linkedin.com/in/alex-aperador/",
+    ariaLabel: "Link to LinkedIn profile",
+  },
 ];
 ---
 
-<section class="relative flex items-center justify-center overflow-hidden min-h-screen w-full">
-    <!-- Grid de fondo con difuminado radial -->
-    <div
-        class="absolute inset-0 z-0 pointer-events-none"
-        style={`
+<section
+  class="relative flex min-h-[min(760px,100vh)] w-full items-center justify-center overflow-hidden"
+>
+  <div
+    class="pointer-events-none absolute inset-0 z-0"
+    style={`
             background-image:
                 linear-gradient(to right, #80808020 1px, transparent 1px),
                 linear-gradient(to bottom, #80808020 1px, transparent 1px);
@@ -33,97 +30,107 @@ const socialLinks = [
             -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
             mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
         `}
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute left-1/2 top-1/2 size-[min(70vw,680px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff5d01]/10 blur-3xl dark:bg-[#ff5d01]/5"
+  >
+  </div>
+
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 pt-24 text-center sm:px-8"
+    id="home"
+  >
+    <p
+      class="hero-fade-in mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5d01]"
+      style="animation-delay: 0.05s"
     >
+      <span data-i18n="hero.role">Software developer / DAM student</span>
+    </p>
+    <div
+      class="gradient-text flex flex-col items-center hero-fade-in"
+      style="animation-delay: 0.1s"
+    >
+      <p
+        class="text-base font-medium text-black/60 dark:text-white/60 sm:text-lg"
+      >
+        Alex Aperador Salcedo
+      </p>
+      <h1
+        class="mt-3 max-w-4xl text-6xl font-bold leading-[0.9] tracking-tight sm:text-8xl lg:text-9xl"
+      >
+        FRONTEND<br /><span class="text-[#ff5d01]">DEVELOPER</span>
+      </h1>
     </div>
 
     <div
-        class="relative z-10 flex items-center flex-col mt-30 gap-4"
-        id="home"
+      class="mt-8 flex items-center gap-3 rounded-full border border-[#2f932f]/30 bg-[#2f932f]/10 px-4 py-2 text-sm text-[#236d23] drop-shadow-md dark:text-[#8de28d] hero-fade-in"
+      style="animation-delay: 0.3s"
     >
-        <div
-            class="gradient-text flex items-center flex-col hero-fade-in"
-            style="animation-delay: 0.1s"
-        >
-            <p class="font-medium lg:text-lg text-md">
-                Alex Aperador Salcedo
-            </p>
-            <h1 class="lg:text-9xl text-6xl font-bold text-center">
-                FRONTEND
-                <br />
-                DEVELOPER
-            </h1>
-        </div>
-
-        <div
-            class="bg-[#174b24] px-5 py-2 rounded-full text-md flex items-center gap-3 mt-5 drop-shadow-md dark:shadow-[0_0_20px_rgba(47,147,47,0.30)] hero-fade-in"
-            style="animation-delay: 0.3s"
-        >
-            <div class="bg-[#2F932F] animate-pulse w-4 h-4 rounded-full"></div>
-            <p class="text-md text-gray-200">Available to work</p>
-        </div>
-
-        <div
-            class="flex gap-5 mt-10 items-center mb-20 hero-fade-in"
-            style="animation-delay: 0.5s"
-        >
-            {
-                socialLinks.map(({ icon: Icon, url, ariaLabel }) => (
-                    <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={ariaLabel}
-                        class="inline-flex w-fit items-center justify-center text-sm hover:text-[#3b3b3b] text-[#141414] dark:text-gray-200 dark:hover:text-white font-medium h-fit relative transition-transform duration-500 hover:scale-105"
-                    >
-                        <Icon class={IconStyle} />
-                        <Icon class="absolute w-10 h-10 z-10 scale-105 blur-xs animate-pulse" />
-                    </a>
-                ))
-            }
-            <div class="flex">
-                <a
-                    href="mailto:alexapsa2007@gmail.com"
-                    class="dark:bg-gray-200 bg-[#141414] duration-500 hover:scale-105 dark:text-[#141414] text-gray-200 py-2 px-4
-                    rounded-full font-medium flex items-center gap-2 hover:dark:bg-white hover:bg-[#3b3b3b] cursor-pointer"
-                    ><SendIcon />
-                    <SendIcon class="absolute z-1 scale-105 blur-xs" />Contact me</a
-                >
-            </div>
-        </div>
-        <Skills />
+      <div class="size-2.5 animate-pulse rounded-full bg-[#2f932f]"></div>
+      <p data-i18n="hero.available">Available to work</p>
     </div>
+
+    <div
+      class="mb-12 mt-10 flex items-center gap-3 hero-fade-in"
+      style="animation-delay: 0.5s"
+    >
+      {
+        socialLinks.map(({ icon: Icon, url, ariaLabel }) => (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaLabel}
+            class="relative inline-flex size-11 items-center justify-center rounded-full border border-black/10 text-[#141414] transition duration-300 hover:-translate-y-1 hover:border-[#ff5d01] hover:text-[#ff5d01] dark:border-white/15 dark:text-gray-200 dark:hover:text-[#ff8c4a]"
+          >
+            <Icon class="size-5" />
+          </a>
+        ))
+      }
+      <div class="flex">
+        <a
+          href="mailto:alexapsa2007@gmail.com"
+          class="flex items-center gap-2 rounded-full bg-[#141414] px-5 py-2.5 text-sm font-medium text-gray-200 transition duration-300 hover:-translate-y-1 hover:bg-[#ff5d01] dark:bg-gray-200 dark:text-[#141414] dark:hover:bg-[#ff5d01] dark:hover:text-white"
+        >
+          <SendIcon class="size-4" />
+          <span data-i18n="hero.contact">Contact me</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    @keyframes hero-fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  @keyframes hero-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-    @keyframes hero-bounce-y {
-        0%,
-        100% {
-            transform: translate(-50%, 0);
-        }
-        50% {
-            transform: translate(-50%, 10px);
-        }
+  @keyframes hero-bounce-y {
+    0%,
+    100% {
+      transform: translate(-50%, 0);
     }
+    50% {
+      transform: translate(-50%, 10px);
+    }
+  }
 
-    .hero-fade-in {
-        opacity: 0;
-        animation: hero-fade-in-up 0.6s ease-out forwards;
-    }
+  .hero-fade-in {
+    opacity: 0;
+    animation: hero-fade-in-up 0.6s ease-out forwards;
+  }
 
-    .hero-bounce {
-        animation:
-            hero-fade-in-up 0.6s ease-out forwards,
-            hero-bounce-y 1.5s ease-in-out 1.5s infinite;
-    }
+  .hero-bounce {
+    animation:
+      hero-fade-in-up 0.6s ease-out forwards,
+      hero-bounce-y 1.5s ease-in-out 1.5s infinite;
+  }
 </style>

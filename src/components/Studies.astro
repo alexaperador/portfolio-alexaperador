@@ -2,54 +2,96 @@
 import StudiesIcon from "../icons/StudiesIcon.astro";
 import Badge from "./Badge.astro";
 
+const locale: string = Astro.currentLocale ?? "es";
+
 const studies = [
-    {
-        degree: "CFGS | Multiplatform Application Development",
-        institution: "Institut Sabadell",
-        year: "2025 - Present",
-        details:
-            "I'm currently in my first year of advanced degree in cross-platform application development. I'm learning OOP with Java, relational databases with SQL, and agile methodologies for modern software development.",
-    },
-    {
-        degree: "CFGM | Microcomputer Systems and Networks",
-        institution: "Institut Sabadell",
-        year: "2023 - 2025",
-        details:
-            "I completed the first and second years of intermediate computer science, where I learned how to assemble and configure computers, as well as configure networks and servers. I also completed projects in HTML, CSS, and advanced office automation skills.",
-    },
+  {
+    degree: "CFGS | Multiplatform Application Development",
+    institution: `Instituto Sabadell - Sabadell`,
+    yearStart: "2025",
+    yearEnd: "Present",
+    details:
+      "I'm currently in my second year of the Higher Degree in Cross-Platform Application Development (DAM) at Institut Sabadell. I'm developing applications with Java, working with relational databases and SQL, building user interfaces, and learning about mobile application development and deployment.",
+  },
+  {
+    degree: "CFGM | Microcomputer Systems and Networks",
+    institution: `Instituto Sabadell - Sabadell`,
+    yearStart: "2023",
+    yearEnd: "2025",
+    details:
+      "I completed the first and second years of intermediate computer science, where I learned how to assemble and configure computers, as well as configure networks and servers. I also completed projects in HTML, CSS, and advanced office automation skills.",
+  },
 ];
 ---
 
 <section id="studies">
-    <div class="w-full mx-auto lg:w-[900px] px-4 sm:px-6 lg:px-8 py-20">
-        <div class="flex items-center justify-center mb-5">
-            <Badge text="Studies" icon={StudiesIcon} />
-            <Badge
-                text="Studies"
-                className="absolute blur-xs -z-1 animate-pulse"
-                icon={StudiesIcon}
-            />
+  <div class="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+    <div
+      class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
+    >
+      <div>
+        <div class="mb-4 flex items-center">
+          <Badge text="Studies" icon={StudiesIcon} />
+          <Badge
+            text="Studies"
+            className="absolute -z-1 blur-xs animate-pulse"
+            icon={StudiesIcon}
+          />
         </div>
-        <div class="space-y-8">
-            {
-                studies.map((study) => (
-                    <div
-                        class="bg-black/20 dark:bg-black/10 border border-black/10 dark:border-white/10 
-                    shadow-xl rounded-lg p-6 
-                    hover:scale-102 transition-transform duration-400"
-                    >
-                        <h2 class="text-xl font-semibold mb-2 dark:text-gray-100 text-[#141414]">
-                            {study.degree}
-                        </h2>
-                        <p class="text-sm italic mb-1 dark:text-gray-300 text-gray-600">
-                            {study.institution} | {study.year}
-                        </p>
-                        <p class="text-black/60 dark:text-white/60">
-                            {study.details}
-                        </p>
-                    </div>
-                ))
-            }
-        </div>
+        <h2
+          class="max-w-xl text-3xl font-semibold tracking-tight text-[#141414] dark:text-gray-100 sm:text-4xl"
+        >
+          <span data-i18n="studies.title"
+            >Education and training.</span
+          >
+        </h2>
+      </div>
     </div>
+    <ol
+      class="relative space-y-4 before:absolute before:bottom-8 before:left-3 before:top-8 before:w-px before:bg-black/15 dark:before:bg-white/15"
+    >
+      {
+        studies.map((study, index) => (
+          <li class="relative pl-8">
+            <span class="absolute left-0 top-7 size-6 rounded-full border-4 border-white bg-[#ff5d01] shadow-md dark:border-[#141414]" />
+            <article class="rounded-2xl border border-black/10 bg-black/10 p-5 shadow-xl transition duration-300 hover:border-[#ff5d01]/50 sm:p-6 dark:border-white/10 dark:bg-black/10">
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                <div>
+                  <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff5d01]">
+                    0{index + 1} /{" "}
+                    <span data-i18n="studies.education">Education</span>
+                  </p>
+                  <h3
+                    data-i18n={`studies.${index}.degree`}
+                    class="text-xl font-semibold text-[#141414] dark:text-gray-100"
+                  >
+                    {study.degree}
+                  </h3>
+                  <p class="mt-1 text-sm italic text-gray-600 dark:text-gray-300">
+                    {study.institution}{", "}
+                    <span data-i18n="location">
+                      {locale === "es" ? "España" : "Spain"}
+                    </span>
+                  </p>
+                </div>
+                <span class="shrink-0 text-sm font-medium text-black/50 dark:text-white/50">
+                  {study.yearStart} -{" "}
+                  {study.yearEnd === "Present" ? (
+                    <span data-i18n="present">Present</span>
+                  ) : (
+                    study.yearEnd
+                  )}
+                </span>
+              </div>
+              <p class="mt-5 max-w-3xl text-sm leading-6 text-black/60 dark:text-white/60">
+                <span data-i18n={`studies.${index}.details`}>
+                  {study.details}
+                </span>
+              </p>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
 </section>
