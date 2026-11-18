@@ -6,7 +6,6 @@
   "projects.title": "Projects I have worked on.",
   "projects.0.description": "A note-taking web application that allows users to create, edit, and organize their notes efficiently.",
   "projects.1.description": "A 2D horror game developed using Godot and Python, featuring atmospheric environments and engaging gameplay.",
-  "projects.2.description": "A modern, functional barbershop website where clients can book appointments and explore services, with a gallery managed through Decap CMS.",
   "projects.preview": "Preview",
   "skills.title": "Tools I work with.",
   "skills.core": "Core stack",

@@ -6,7 +6,6 @@
   "projects.title": "Proyectos en los que he trabajado.",
   "projects.0.description": "Aplicación web para tomar notas que permite crear, editar y organizar notas de forma eficiente.",
   "projects.1.description": "Videojuego de terror en 2D desarrollado con Godot y Python, con entornos atmosféricos y una jugabilidad envolvente.",
-  "projects.2.description": "Web moderna y funcional para una barbería, con reserva de citas y galería gestionable mediante Decap CMS.",
   "projects.preview": "Vista previa",
   "skills.title": "Las herramientas con las que trabajo.",
   "skills.core": "Stack principal",
