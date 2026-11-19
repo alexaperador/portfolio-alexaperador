@@ -16,47 +16,48 @@ import Badge from "./Badge.astro";
 const tags = {
   Astro: {
     name: "Astro",
-    class: "bg-[#3e257a] text-white inset-shadow-sm inset-shadow-purple-500/70",
+    class: "border-[#7c3aed]/45 text-[#7c3aed]",
     icon: AstroIcon,
   },
   NextJs: {
     name: "Next.js",
-    class: "bg-[#090909] text-white inset-shadow-sm inset-shadow-white/30",
+    class:
+      "border-[#141414]/35 text-[#141414] dark:border-white/35 dark:text-gray-100",
     icon: NextJsIcon,
   },
   Supabase: {
     name: "Supabase",
-    class: "bg-[#248559] text-white inset-shadow-sm inset-shadow-green-500/70",
+    class: "border-[#16845b]/45 text-[#16845b]",
     icon: SupabaseIcon,
   },
   TailwindCSS: {
     name: "Tailwind CSS",
-    class: "bg-[#003159] text-white inset-shadow-sm inset-shadow-blue-500/70",
+    class: "border-[#0284c7]/45 text-[#0284c7]",
     icon: TailwindCSSIcon,
   },
   HTML: {
     name: "HTML",
-    class: "bg-[#7a3625] text-white inset-shadow-sm inset-shadow-orange-500/70",
+    class: "border-[#ea580c]/45 text-[#ea580c]",
     icon: HtmlIcon,
   },
   Godot: {
     name: "Godot",
-    class: "bg-[#355570] text-white inset-shadow-sm inset-shadow-blue-400/70",
+    class: "border-[#256b9a]/45 text-[#256b9a]",
     icon: GodotIcon,
   },
   Python: {
     name: "Python",
-    class: "bg-[#0b395e] text-white inset-shadow-sm inset-shadow-blue-400/50",
+    class: "border-[#3776ab]/45 text-[#3776ab]",
     icon: PythonIcon,
   },
   Decap: {
     name: "Decap CMS",
-    class: "bg-[#7a2572] text-white inset-shadow-sm inset-shadow-pink-500/70",
+    class: "border-[#d9006c]/45 text-[#d9006c]",
     icon: DecapIcon,
   },
   TypeScript: {
     name: "TypeScript",
-    class: "bg-[#08386e] text-white inset-shadow-sm inset-shadow-blue-500/70",
+    class: "border-[#3178c6]/45 text-[#3178c6]",
     icon: TypeScriptIcon,
   },
 };
@@ -140,9 +141,11 @@ const projects = [
                   {tags.map((tag) => (
                     <li>
                       <span
-                        class={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${tag.class}`}
+                        class={`flex items-center gap-2 rounded-full border bg-white/20 px-2.5 py-1.5 text-[11px] font-semibold tracking-wide transition duration-200 hover:-translate-y-0.5 hover:bg-white/50 hover:shadow-sm dark:bg-black/10 dark:hover:bg-white/10 ${tag.class}`}
                       >
-                        <tag.icon class="size-3.5" />
+                        <span class="flex size-5 items-center justify-center rounded-full bg-current/10">
+                          <tag.icon class="size-3.5" />
+                        </span>
                         {tag.name}
                       </span>
                     </li>
